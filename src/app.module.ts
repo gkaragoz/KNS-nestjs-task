@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
+import { TypegooseModule } from 'nestjs-typegoose';
+import 'dotenv/config';
 
 @Module({
-  imports: [ProductModule],
+  imports: [TypegooseModule.forRoot(process.env.MONGO_URI), ProductModule],
   controllers: [AppController],
   providers: [AppService],
 })
