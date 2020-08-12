@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductController } from './product.controller';
-import { Product } from './domain/product';
+import { Product } from './dto/product.dto';
 import { TypegooseModule } from 'nestjs-typegoose';
 
 @Module({

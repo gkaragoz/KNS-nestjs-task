@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Product } from './domain/product';
+import { Product } from './dto/product.dto';
 import { InjectModel } from 'nestjs-typegoose';
 import { ReturnModelType } from '@typegoose/typegoose';
 
@@ -19,15 +19,15 @@ export class ProductService {
     return await this.productModel.find().exec();
   }
 
-  async getSingleProduct(productId: number) {
-    const product = await this.productModel.findOne({ id: productId }).exec();
+  async getSingleProduct(productId: string) {
+    const product = await this.productModel.findById({ _id: productId }).exec();
     return product;
   }
 
-  async updateProduct(id: number, product: Product) {
-    const updatedProduct = await this.productModel.findOne({ id }).then(p => {
-      return p.updateOne(product).exec();
-    });
+  async updateProduct(id: string, product: Product) {
+    const updatedProduct = await this.productModel
+      .findOneAndUpdate({ _id: id }, product, { new: true })
+      .exec();
 
     return updatedProduct;
   }

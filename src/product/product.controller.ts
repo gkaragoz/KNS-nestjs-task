@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { Product } from './domain/product';
+import { Product } from './dto/product.dto';
 
 @Controller('products')
 export class ProductController {
@@ -20,7 +20,7 @@ export class ProductController {
   }
 
   @Get(':id')
-  async getProduct(@Param('id') prodId: number): Promise<Product | null> {
+  async getProduct(@Param('id') prodId: string): Promise<Product | null> {
     return await this.productService.getSingleProduct(prodId);
   }
 
@@ -32,7 +32,7 @@ export class ProductController {
 
   @Patch(':id')
   async updateProduct(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() product: Product,
   ): Promise<Product | null> {
     return await this.productService.updateProduct(id, product);

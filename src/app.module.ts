@@ -6,7 +6,10 @@ import { TypegooseModule } from 'nestjs-typegoose';
 import 'dotenv/config';
 
 @Module({
-  imports: [TypegooseModule.forRoot(process.env.MONGO_URI), ProductModule],
+  imports: [
+    TypegooseModule.forRoot(process.env.MONGO_URI, { useFindAndModify: false }),
+    ProductModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
