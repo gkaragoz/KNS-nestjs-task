@@ -2,6 +2,9 @@ import { prop } from '@typegoose/typegoose';
 
 export class Product {
   @prop()
+  id: number;
+
+  @prop()
   title: string;
 
   @prop()
