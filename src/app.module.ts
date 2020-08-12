@@ -5,6 +5,8 @@ import { ProductModule } from './product/product.module';
 import { TypegooseModule } from 'nestjs-typegoose';
 import 'dotenv/config';
 
+console.log(process.env);
+
 @Module({
   imports: [
     TypegooseModule.forRoot(process.env.MONGO_URI, { useFindAndModify: false }),
